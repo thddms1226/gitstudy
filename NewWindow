@@ -1,0 +1,53 @@
+package swingsample.dialog;
+
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+class Frame2 extends JDialog{
+	JLabel lbl = new JLabel("");
+	public Frame2(String str) {
+		add(lbl);
+		lbl.setText(str.toString());
+		
+		setSize(200, 100);
+		setVisible(true);
+	}
+}
+
+class Frame1 extends JFrame implements ActionListener{
+	JButton left = new JButton("����");
+	JButton right = new JButton("������");
+	Frame2 f2;
+	
+	public Frame1() {
+		setLayout(new GridLayout(0,2));
+		add(left);
+		add(right);
+		
+		setSize(300, 300);
+		setVisible(true);
+		
+		left.addActionListener(this);
+		right.addActionListener(this);
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==left || e.getSource()==right) {
+			f2 = new Frame2(e.getActionCommand() + "��ư�� �����̱���!!");
+		}
+	}
+	
+}
+
+public class NewWindow{
+	public static void main(String[] args) {
+		Frame1 tf = new Frame1();
+	}
+}
